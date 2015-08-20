@@ -3,6 +3,7 @@ var fs = require('fs'), http = require('http'), url = require('url');
 port = process.argv[2];
 if(port) { port = port.split('=')[1]; }
 if(!port) { port = 8087; }
+if(port == 'IIS') { port = process.env.PORT; }
 
 console.log('Listening on ' + port);
 
