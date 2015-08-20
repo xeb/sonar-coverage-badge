@@ -1,0 +1,8 @@
+{
+  "name": "sonar-coverage-badge",
+  "version": "0.1.0",
+  "description": "A simple node.js server that will display badges for Code Coverage from a source SonarQube server",
+  "main": "index.js",
+  "author": "Mark Kockerbeck",
+  "license": "BSD-2-Clause"
+}
