@@ -19,7 +19,7 @@ Example:
 
 Will display:
 
-<img src="http://localhost:8087/?server=nemo.sonarqube.org&resource=org.codehaus.sonar-plugins.php:parent&metrics=coverage" />
+<img src="http://sonarcovbadge.epicapp.com/?server=nemo.sonarqube.org&resource=org.codehaus.sonar-plugins.php:parent&metrics=coverage" />
 
 
 # Color Settings
@@ -31,7 +31,7 @@ To adjust the badge colors, simply update the ```colorSettings``` var at the beg
 ## JUnit
 
 <a href="http://nemo.sonarqube.org/drilldown/measures/252031?metric=coverage">
-	<img src="http://localhost:8087/?server=nemo.sonarqube.org&resource=junit:junit&metrics=coverage" />
+	<img src="http://sonarcovbadge.epicapp.com/?server=nemo.sonarqube.org&resource=junit:junit&metrics=coverage" />
 </a>
 
 ```
@@ -43,7 +43,7 @@ To adjust the badge colors, simply update the ```colorSettings``` var at the beg
 ## Python
 
 <a href="http://nemo.sonarqube.org/drilldown/measures/690819?metric=coverage">
-	<img src="http://localhost:8087/?server=nemo.sonarqube.org&resource=org.codehaus.sonar-plugins.python:python&metrics=coverage" />
+	<img src="http://sonarcovbadge.epicapp.com/?server=nemo.sonarqube.org&resource=org.codehaus.sonar-plugins.python:python&metrics=coverage" />
 </a>
 
 ```
@@ -51,4 +51,3 @@ To adjust the badge colors, simply update the ```colorSettings``` var at the beg
 	<img src="http://localhost:8087/?server=nemo.sonarqube.org&resource=org.codehaus.sonar-plugins.python:python&metrics=coverage" />
 </a>
 ```
-
