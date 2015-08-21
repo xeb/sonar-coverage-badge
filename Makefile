@@ -43,6 +43,6 @@ sonar:
 	@# add the sonar sonar-runner executable to the PATH
 	PATH="$$PWD/tools/sonar-runner-2.4/bin:$$PATH" sonar-runner
 #/usr/local/Cellar/sonar-runner/2.4/bin/sonar-runner
-ci: clean xunit checkstyle sonar
+ci: clean checkstyle sonar
 
-.PHONY: clean test xunit coverage cobertura jshint checkstyle sonar ci
+.PHONY: clean test xunit coverage jshint sonar ci
