@@ -1,6 +1,6 @@
 var should = require('should'),
   assert = require('assert'),
-  badger = require('../lib/badger.js');
+  badger = require('../src/lib/badger.js');
 
 describe('Get Coverage', function() {
   it('should get code coverage value', function(done) {

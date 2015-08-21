@@ -1,5 +1,5 @@
 var should = require('should'),
-  badger = require('../lib/badger.js');
+  badger = require('../src/lib/badger.js');
 
 describe('Generate Image', function() {
   it('should generate a success badge', function() {
