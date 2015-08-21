@@ -1,5 +1,9 @@
 # Sonar Coverage Badge
 
+<a href="https://travis-ci.org/xeb/sonar-coverage-badge">
+<img src="https://api.travis-ci.org/xeb/sonar-coverage-badge.svg?branch=master" />
+</a>
+
 This is a small node.js server that will generate a coverage badge (similar to: http://coveralls.io/) but from a <a href="http://sonarqube.org">SonarQube</a> server.
 
 This is yet-another-small exploratory project I was playing with.
