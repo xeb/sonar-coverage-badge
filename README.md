@@ -2,6 +2,8 @@
 
 <a href="https://travis-ci.org/xeb/sonar-coverage-badge">
 <img src="https://api.travis-ci.org/xeb/sonar-coverage-badge.svg?branch=master" />
+</a><a href="http://sonar.epicapp.com/dashboard/index/1">
+<img src="http://sonarcovbadge.epicapp.com/?server=sonar.epicapp.com&resource=sonar-coverage-badge&metrics=coverage" />
 </a>
 
 This is a small node.js server that will generate a coverage badge (similar to: http://coveralls.io/) but from a <a href="http://sonarqube.org">SonarQube</a> server.
