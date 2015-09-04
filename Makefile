@@ -41,6 +41,6 @@ jshint:
 
 sonar:
 	@# add the sonar sonar-runner executable to the PATH
-	sonar-runner
+	sonar-runner -e -X
 
 .PHONY: clean test coverage jshint sonar all
