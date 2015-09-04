@@ -2,12 +2,9 @@ language: node_js
 install:
 - wget http://repo1.maven.org/maven2/org/codehaus/sonar/runner/sonar-runner-dist/2.4/sonar-runner-dist-2.4.zip
 - unzip sonar*.zip
-- cd sonar-runner-2.4
-- export PATH=$PATH:.
+- export PATH=$PATH:sonar-runner-2.4/bin/
 script:
-- travis_retry npm test
-- travis_retry make coverage
-- make sonar
+- travis_retry make test
 node_js:
 - 'iojs'
 - '0.12'

@@ -7,6 +7,8 @@ JSHINT=node_modules/.bin/jshint
 # test files must end with ".test.js"
 TESTS=$(shell find test/ -name "*.test.js")
 
+all: clean test realtest
+
 clean:
 	rm -rf reports
 
@@ -37,10 +39,8 @@ coverage:
 jshint:
 	$(JSHINT) src test --show-non-errors
 
-sonar:
+sonar: coverage
 	@# add the sonar sonar-runner executable to the PATH
-	PATH="$$PWD/tools/sonar-runner-2.4/bin:$$PATH" sonar-runner
+	sonar-runner
 
-ci: clean checkstyle sonar
-
-.PHONY: clean test coverage jshint sonar ci
+.PHONY: clean test coverage jshint sonar all
