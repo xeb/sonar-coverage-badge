@@ -6,15 +6,14 @@
   "author": "Mark Kockerbeck",
   "license": "BSD-2-Clause",
   "scripts": {
-    "test": "mocha --reporter spec", 
+    "test": "mocha --reporter spec",
     "coverage": "istanbul cover _mocha -- -R spec"
   },
   "devDependencies": {
     "mocha": "~2.2.5",
-    "should": "~7.0.4",
-    "assert": "~1.3.0",
     "istanbul": "~0.3.18",
     "mocha-istanbul": "~0.2.0",
-    "jshint": "~2.8.0"
+    "jshint": "~2.8.0",
+    "chai": "~3.2.0"
   }
 }

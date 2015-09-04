@@ -1,4 +1,7 @@
-var should = require('should'),
+var chai = require('chai'),
+  expect = chai.expect,
+  assert = chai.assert,
+  should = chai.should(),
   badger = require('../src/lib/badger.js');
 
 describe('Generate Image', function() {

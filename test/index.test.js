@@ -1,5 +1,7 @@
-var should = require('should'),
-  assert = require('assert'),
+var chai = require('chai'),
+  expect = chai.expect,
+  assert = chai.assert,
+  should = chai.should(),
   index = require('../src/index.js');
 
 

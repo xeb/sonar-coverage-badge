@@ -1,5 +1,7 @@
-var should = require('should'),
-  assert = require('assert'),
+var chai = require('chai'),
+  expect = chai.expect,
+  assert = chai.assert,
+  should = chai.should(),
   badger = require('../src/lib/badger.js');
 
 describe('Get Coverage', function() {
@@ -18,7 +20,7 @@ describe('Get Coverage', function() {
   it('should return parsed error', function(done) {
       var c = badger.GetCoverage('fdasfdsfasdfdsfasdfsd', undefined, 'fdsfdasafd', 'afdasfsd', undefined,
       function(e){ // error
-        e.toString().should.equal('Error: getaddrinfo ENOTFOUND');
+        assert.include(e.toString(), 'ENOTFOUND');
         done();
       });
    });
@@ -28,7 +30,7 @@ describe('Get Coverage', function() {
 
         var c = badger.GetCoverage('127.0.0.1', undefined, 'none', 'none', undefined,
         function(e){ // error
-          e.toString().should.equal('Error: connect ECONNREFUSED');
+          assert.include(e.toString(), 'ECONNREFUSED');
           done();
         });
       });
