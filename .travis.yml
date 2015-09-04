@@ -7,7 +7,6 @@ script:
 - npm update
 - travis_retry make test
 - make coverage
-- make sonar
 node_js:
 - 'iojs'
 - '0.12'
