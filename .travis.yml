@@ -4,6 +4,7 @@ install:
 - unzip sonar*.zip
 - export PATH=$PATH:sonar-runner-2.4/bin/
 script:
+- npm update
 - travis_retry make test
 - make coverage
 - make sonar

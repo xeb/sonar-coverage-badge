@@ -6,7 +6,7 @@
   "author": "Mark Kockerbeck",
   "license": "BSD-2-Clause",
   "scripts": {
-    "test": "mocha --reporter spec", /* unused by .travis.yml */
+    "test": "mocha --reporter spec", 
     "coverage": "istanbul cover _mocha -- -R spec"
   },
   "devDependencies": {
