@@ -2,9 +2,7 @@
 
 <a href="https://travis-ci.org/xeb/sonar-coverage-badge">
 <img src="https://api.travis-ci.org/xeb/sonar-coverage-badge.svg?branch=master" />
-</a>
-
-<a href="http://sonar.epicapp.com/dashboard/index/1">
+</a><a href="http://sonar.epicapp.com/dashboard/index/1">
 <img src="http://sonarcovbadge.epicapp.com/?server=sonar.epicapp.com&resource=sonar-coverage-badge&metrics=coverage" />
 </a>
 
