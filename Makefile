@@ -39,7 +39,7 @@ coverage:
 jshint:
 	$(JSHINT) src test --show-non-errors
 
-sonar: coverage
+sonar:
 	@# add the sonar sonar-runner executable to the PATH
 	sonar-runner
 

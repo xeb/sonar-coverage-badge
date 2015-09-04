@@ -10,36 +10,27 @@ describe('Get Coverage', function() {
       d.should.equal(95.4);
       done();
     }, function(e){ // error
-      assert.equal(undefined, e, "Error found " + e);
+      assert.fail("Error occurred");
       done();
     });
   });
 
-  // it('should send parse error out', function(done) {
-  //
-  //     var c = badger.GetCoverage('nemo.fasdfdsfasdfsd', undefined, 'org.codehaus.sonar-plugins.php:parent', 'coverage',
-  //     function(d){ // success
-  //       d.should.equal(95.4);
-  //       done();
-  //     }, function(e){ // error
-  //       var v = (e.toString().indexOf("Error: connect ECONNREFUSED") > 1);
-  //       assert.true(v)
-  //       done();
-  //     });
-  //   });
-  //
-  //
-  //   it('should handle an error', function(done) {
-  //
-  //       var c = badger.GetCoverage('127.0.0.1', undefined, 'none', 'none',
-  //       function(d){ // success
-  //         d.should.equal(95.4);
-  //         done();
-  //       }, function(e){ // error
-  //         var v = (e.toString().indexOf("Error: connect ECONNREFUSED") > 1);
-  //         assert.true(v)
-  //         done();
-  //       });
-  //     });
+  it('should return parsed error', function(done) {
+      var c = badger.GetCoverage('fdasfdsfasdfdsfasdfsd', undefined, 'fdsfdasafd', 'afdasfsd', undefined,
+      function(e){ // error
+        e.toString().should.equal('Error: getaddrinfo ENOTFOUND');
+        done();
+      });
+   });
+
+
+    it('should handle an error', function(done) {
+
+        var c = badger.GetCoverage('127.0.0.1', undefined, 'none', 'none', undefined,
+        function(e){ // error
+          e.toString().should.equal('Error: connect ECONNREFUSED');
+          done();
+        });
+      });
 
 });
