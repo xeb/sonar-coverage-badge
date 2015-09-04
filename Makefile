@@ -20,7 +20,6 @@ realtest:
 	echo $?
 	pkill node
 
-
 coverage:
 	@# check if reports folder exists, if not create it
 	@test -d reports || mkdir reports
@@ -41,7 +40,6 @@ jshint:
 sonar:
 	@# add the sonar sonar-runner executable to the PATH
 	PATH="$$PWD/tools/sonar-runner-2.4/bin:$$PATH" sonar-runner
-	#/usr/local/Cellar/sonar-runner/2.4/bin/sonar-runner
 
 ci: clean checkstyle sonar
 
