@@ -13,7 +13,7 @@ clean:
 	rm -rf reports
 
 test:
-	$(MOCHA) -R spec $(TESTS)
+	npm run-script coverage
 
 realtest:
 	node src/index.js &
@@ -35,7 +35,7 @@ coverage:
 
 	@# tell istanbul to only generate the lcov file
 	ISTANBUL_REPORTERS=lcovonly $(MOCHA) -R mocha-istanbul $(TESTS)
-	
+
 	@# place the lcov report in the report folder, remove instrumented code
 	@# and reput src at its place
 	mv lcov.info reports/coverage.lcov
