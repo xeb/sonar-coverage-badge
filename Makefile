@@ -35,6 +35,7 @@ coverage:
 	mv lcov.info reports/coverage.lcov
 	rm -rf src
 	mv src-orig src
+	genhtml reports/coverage.lcov --output-directory reports/
 
 jshint:
 	$(JSHINT) src test --show-non-errors

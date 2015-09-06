@@ -1,17 +1,22 @@
 var http = require('http');
 
-function Badger() {
-    this.GetCoverage = getCoverage;
-    this.GenerateImage = generateImage;
+function badger() {
+  this.GetCoverage = getCoverage;
+  this.GenerateImage = generateImage;
 }
 
-module.exports = new Badger();
+module.exports = new badger();
 
-var colorSettings = [
-  { min: 0, color: '#a00' },
-  { min: 50, color: '#7ECFE6' },
-  { min: 90, color: '#4c1' }
-];
+var colorSettings = [{
+  min: 0,
+  color: '#a00'
+}, {
+  min: 50,
+  color: '#7ECFE6'
+}, {
+  min: 90,
+  color: '#4c1'
+}];
 
 function getCoverage(host, ssl, resource, metric, success, error) {
   var coverage;
@@ -24,14 +29,18 @@ function getCoverage(host, ssl, resource, metric, success, error) {
   http.get(options, function(res) {
     var str = '';
     res.setEncoding('utf8');
-    res.on('data', function(chunk) { str += chunk; });
+    res.on('data', function(chunk) {
+      str += chunk;
+    });
 
-    res.on('end', function () {
+    res.on('end', function() {
       try {
         var obj = JSON.parse(str);
         coverage = obj[0].msr[0].val;
-        if(coverage) { success(coverage); }
-      } catch(e) {
+        if (coverage) {
+          success(coverage);
+        }
+      } catch (e) {
         error(e);
       }
     });
@@ -45,9 +54,12 @@ function getCoverage(host, ssl, resource, metric, success, error) {
 
 function generateImage(coverage) {
   var color = '';
-  colorSettings.forEach(function(setting){
-    if(coverage >= setting.min) {
+  var defaultColor = '#ddd';
+  colorSettings.forEach(function(setting) {
+    if (coverage >= setting.min) {
       color = setting.color;
+    } else {
+      color = defaultColor;
     }
   });
 
@@ -63,14 +75,14 @@ function generateImage(coverage) {
      </mask>\
      <g mask="url(#a)">\
         <path fill="#555" d="M0 0h63v20H0z" />\
-        <path fill="'+color+'" d="M63 0h43v20H63z" />\
+        <path fill="' + color + '" d="M63 0h43v20H63z" />\
         <path fill="url(#b)" d="M0 0h106v20H0z" />\
      </g>\
      <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">\
         <text x="31.5" y="15" fill="#010101" fill-opacity=".3">coverage</text>\
         <text x="31.5" y="14">coverage</text>\
-        <text x="83.5" y="15" fill="#010101" fill-opacity=".3">'+coverage+'%</text>\
-        <text x="83.5" y="14">'+coverage+'%</text>\
+        <text x="83.5" y="15" fill="#010101" fill-opacity=".3">' + coverage + '%</text>\
+        <text x="83.5" y="14">' + coverage + '%</text>\
      </g>\
   </svg>';
 }
