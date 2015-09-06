@@ -10,6 +10,16 @@ This is a small node.js server that will generate a coverage badge (similar to: 
 
 This is yet-another-small exploratory project I was playing with.
 
+# TODO
+
+```
+Update: The HTTPS versions also get proxied now. Assets must include Cache-Control: no-cache and ETag headers. If a badge is not updating, then it means they are not properly setting these headers. See my comment below for more info.
+
+https://github.com/github/markup/issues/224
+
+```
+
+I need to return these headers
 
 # Usage
 

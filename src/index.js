@@ -19,7 +19,7 @@ function getPort() {
 }
 
 function startServer(port) {
-  http.createServer(function(req,res){
+  var server = http.createServer(function(req,res){
     var request = url.parse(req.url, true);
     if(!request.query.server || !request.query.resource || !request.query.metrics) {
       return;
@@ -27,7 +27,7 @@ function startServer(port) {
 
     var coverageHandler = function(coverage) {
         var image = badger.GenerateImage(coverage, request.query.metrics);
-        res.writeHead(200, {'Content-Type':'image/svg+xml;charset=utf-8'});
+        res.writeHead(200, {'Content-Type':'image/svg+xml;charset=utf-8', 'Cache-Control':'no-cache'});
         res.end(image);
     }
 
@@ -45,6 +45,8 @@ function startServer(port) {
       onError);
 
   }).listen(port);
+
+  return server;
 }
 
 port = getPort();
