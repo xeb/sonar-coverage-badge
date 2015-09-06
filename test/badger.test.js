@@ -51,11 +51,11 @@ describe('Badger', function() {
     var metric = 'FAIL';
 
     badger.GetCoverage('nemo.sonarqube.org', undefined, 'org.codehaus.sonar-plugins.php:parent', metric,
-      function(d) {
+      function() {
         assert.fail('Success should not be called for bad values');
         done();
       },
-      function(e) {
+      function() {
         done();
       });
   });

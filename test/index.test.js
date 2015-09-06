@@ -28,6 +28,24 @@ var error = function(err) {
 
 describe('Index ', function() {
 
+  it('should read from process.argv', function(done) {
+    var previous = process.argv[2];
+    process.argv[2] = '--port=1111';
+    var port = index.GetPort();
+    port.should.equal('1111');
+    process.argv[2] = previous;
+    done();
+  });
+
+  it('should defaults if process.argv is bad', function(done) {
+    var previous = process.argv[2];
+    process.argv[2] = '--port111';
+    var port = index.GetPort();
+    port.should.equal(8087);
+    process.argv[2] = previous;
+    done();
+  });
+
   it('should default port to 8087', function(done) {
     var port = index.GetPort();
     port.should.equal(8087);

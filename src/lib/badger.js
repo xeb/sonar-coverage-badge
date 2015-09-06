@@ -36,7 +36,7 @@ function getCoverage(host, ssl, resource, metric, success, error) {
     res.on('end', function() {
       try {
         var obj = JSON.parse(str);
-        mval = obj[0].msr[0].val;
+        var mval = obj[0].msr[0].val;
         success(mval);
       } catch (e) {
         error(e);
