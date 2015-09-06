@@ -58,5 +58,5 @@ function startServer(port) {
   return server;
 }
 
-port = getPort();
+var port = getPort();
 startServer(port);
