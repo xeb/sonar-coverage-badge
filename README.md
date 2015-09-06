@@ -8,8 +8,6 @@
 
 This is a small node.js server that will generate a coverage badge (similar to: http://coveralls.io/) but from a <a href="http://sonarqube.org">SonarQube</a> server.
 
-This is yet-another-small exploratory project I was playing with.
-
 # Usage
 
 ```node sample-coverage-badge.js --port=8087```
