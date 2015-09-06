@@ -9,7 +9,7 @@ var chai = require('chai'),
 
   // utility function for test
   var isPortTaken = function(port, fn) {
-    var net = require('net')
+    var net = require('net');
     var tester = net.createServer()
     .once('error', function (err) {
       if (err.code != 'EADDRINUSE') return fn(err)
@@ -57,7 +57,6 @@ var chai = require('chai'),
       var port = 7078;
       var server = index.StartServer(port);
       server.on('listening', function(){
-        console.log('Server listening...\n');
 
         var options = {
           host: 'localhost',
@@ -82,7 +81,6 @@ var chai = require('chai'),
       var port = 8082;
       var server = index.StartServer(port);
       server.on('listening', function(){
-        console.log('Server listening...\n');
 
         var options = {
           host: 'localhost',
@@ -91,7 +89,6 @@ var chai = require('chai'),
         };
 
         http.get(options, function(res) {
-          console.log(res.headers['cache-control']);
           assert.equal(res.headers['cache-control'], 'no-cache');
           server.close();
           done();
