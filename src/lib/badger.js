@@ -10,7 +10,7 @@ module.exports = new Badger()
 var colorSettings = [
   { min: 0, color: '#a00' },
   { min: 50, color: '#7ECFE6' },
-  { min: 80, color: '#4c1' }
+  { min: 90, color: '#4c1' }
 ];
 
 function getCoverage(host, ssl, resource, metric, success, error) {
