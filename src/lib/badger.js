@@ -9,7 +9,7 @@ module.exports = new Badger()
 
 var colorSettings = [
   { min: 0, color: '#a00' },
-  { min: 50, color: '#7ECFE6' },
+  { min: 49, color: '#7ECFE6' },
   { min: 90, color: '#4c1' }
 ];
 
