@@ -18,9 +18,6 @@ function getPort() {
   if (!port) {
     port = 8087;
   }
-  if (port === 'IIS') {
-    port = process.env.PORT;
-  }
   return port;
 }
 
