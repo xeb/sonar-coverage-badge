@@ -26,10 +26,16 @@ coverage:
 	@# check if reports folder exists, if not create it
 	@test -d reports || mkdir reports
 	$(ISTANBUL) instrument --output src-cov src
+
 	@# move original src code and replace it by the instrumented one
-	mv src src-orig && mv src-cov src
+	mv src src-orig
+	sleep 3
+	mv src-cov src
+	sleep 3
+
 	@# tell istanbul to only generate the lcov file
 	ISTANBUL_REPORTERS=lcovonly $(MOCHA) -R mocha-istanbul $(TESTS)
+	
 	@# place the lcov report in the report folder, remove instrumented code
 	@# and reput src at its place
 	mv lcov.info reports/coverage.lcov
