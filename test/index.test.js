@@ -1,5 +1,5 @@
 var chai = require('chai'),
-  expect = chai.expect,
+
   assert = chai.assert,
   should = chai.should(),
   http = require('http'),
@@ -12,19 +12,18 @@ var chai = require('chai'),
     var net = require('net');
     var tester = net.createServer()
     .once('error', function (err) {
-      if (err.code != 'EADDRINUSE') return fn(err)
-      fn(null, true)
+      if (err.code != 'EADDRINUSE') return fn(err);
+      fn(null, true);
     })
     .once('listening', function() {
-      tester.once('close', function() { fn(null, false) })
-      .close()
+      tester.once('close', function() { fn(null, false); }).close();
     })
-    .listen(port)
-  }
+    .listen(port);
+  };
 
   var error = function(err) {
     assert.isNull(err);
-  }
+  };
 
   describe('Index ', function() {
 
@@ -106,7 +105,7 @@ var chai = require('chai'),
         };
 
         http.get(options, function(res) {
-          onfound(res.headers['etag']);
+          onfound(res.headers.etag);
         }).on('error', function(e) {
           error(e);
         });
@@ -117,7 +116,7 @@ var chai = require('chai'),
           getEtag(function(etag2){
             assert.notEqual(etag1, etag2);
             done();
-          })
+          });
         });
       }); // listenining
     }); // return cache control
@@ -131,15 +130,14 @@ var chai = require('chai'),
           path: '/?server=nemo.sonarqube.org&resource=org.codehaus.sonar-plugins.php:parent&metrics=coverage',
           port: port,
         };
-
         http.get(options, function(res) {
           var str = '';
           res.setEncoding('utf8');
-          res.on('data', function(chunk) { str += chunk; })
+          res.on('data', function(chunk) { str += chunk; });
           res.on('end', function () {
             try {
               parseString(str, function (err, result) {
-                assert.equal(result.svg['$'].width, 106);
+                assert.equal(result.svg.$.width, 106);
                 server.close();
                 done();
               });

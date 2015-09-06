@@ -1,11 +1,11 @@
-var http = require('http'), url = require('url');
+var http = require('http');
 
 function Badger() {
     this.GetCoverage = getCoverage;
     this.GenerateImage = generateImage;
 }
 
-module.exports = new Badger()
+module.exports = new Badger();
 
 var colorSettings = [
   { min: 0, color: '#a00' },
@@ -14,17 +14,17 @@ var colorSettings = [
 ];
 
 function getCoverage(host, ssl, resource, metric, success, error) {
-  var coverage = undefined;
+  var coverage;
   var options = {
     host: host,
     path: '/api/resources?resource=' + resource + '&metrics=' + metric,
-    port: ssl ? 443 : 80,
+    port: ssl ? 443 : 80
   };
 
   http.get(options, function(res) {
     var str = '';
     res.setEncoding('utf8');
-    res.on('data', function(chunk) { str += chunk; })
+    res.on('data', function(chunk) { str += chunk; });
 
     res.on('end', function () {
       try {
@@ -51,6 +51,7 @@ function generateImage(coverage) {
     }
   });
 
+  /*jshint multistr: true */
   return '<?xml version="1.0" encoding="UTF-8"?>\
   <svg xmlns="http://www.w3.org/2000/svg" width="106" height="20">\
      <linearGradient id="b" x2="0" y2="100%">\

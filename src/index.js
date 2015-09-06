@@ -1,5 +1,4 @@
-var fs = require('fs'),
-  http = require('http'),
+var http = require('http'),
   url = require('url'),
   uuid = require('uuid'),
   badger = require('./lib/badger.js');
@@ -9,7 +8,7 @@ function Index() {
   this.StartServer = startServer;
 }
 
-module.exports = new Index()
+module.exports = new Index();
 
 function getPort() {
   port = process.argv[2];
@@ -35,15 +34,14 @@ function startServer(port) {
         };
         res.writeHead(200, headers);
         res.end(image);
-    }
+    };
 
     var onError = function(e) {
-      console.log(e);
       res.writeHead(500, {'Content-Type':'text/plain'});
       res.end(e.toString());
-    }
+    };
 
-    var coverage = badger.GetCoverage(request.query.server,
+    badger.GetCoverage(request.query.server,
       request.query.ssl,
       request.query.resource,
       request.query.metrics,
