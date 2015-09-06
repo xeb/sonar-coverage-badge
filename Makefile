@@ -25,16 +25,25 @@ realtest:
 coverage:
 	@# check if reports folder exists, if not create it
 	@test -d reports || mkdir reports
-	$(ISTANBUL) instrument --output src-cov src
-	@# move original src code and replace it by the instrumented one
-	mv src src-orig && mv src-cov src
+
+	@# make a copy of all src and tests since we will want to instrument our code
+	@test -d cov-wip || mkdir cov-wip
+	cp -r test cov-wip/test
+	cp -r src cov-wip/src
+
+	$(ISTANBUL) instrument --output cov-wip/src-cov cov-wip/src
+	rm -rf cov-wip/src
+	mv cov-wip/src-cov cov-wip/src
+
 	@# tell istanbul to only generate the lcov file
-	ISTANBUL_REPORTERS=lcovonly $(MOCHA) -R mocha-istanbul $(TESTS)
+	ISTANBUL_REPORTERS=lcovonly $(MOCHA) -R mocha-istanbul $(shell find cov-wip/test/ -name "*.test.js")
+
 	@# place the lcov report in the report folder, remove instrumented code
 	@# and reput src at its place
 	mv lcov.info reports/coverage.lcov
-	rm -rf src
-	mv src-orig src
+
+	@# clean up the coverage work in progress folder
+	rm -rf cov-wip
 
 jshint:
 	$(JSHINT) src test --show-non-errors
