@@ -1,6 +1,7 @@
 var fs = require('fs'),
   http = require('http'),
   url = require('url'),
+  uuid = require('uuid'),
   badger = require('./lib/badger.js');
 
 function Index() {
@@ -27,7 +28,12 @@ function startServer(port) {
 
     var coverageHandler = function(coverage) {
         var image = badger.GenerateImage(coverage, request.query.metrics);
-        res.writeHead(200, {'Content-Type':'image/svg+xml;charset=utf-8', 'Cache-Control':'no-cache'});
+        var headers = {
+          'Content-Type':'image/svg+xml;charset=utf-8',
+          'Cache-Control':'no-cache',
+          'ETag' : uuid.v4()
+        };
+        res.writeHead(200, headers);
         res.end(image);
     }
 

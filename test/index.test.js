@@ -24,7 +24,6 @@ var chai = require('chai'),
 
   var error = function(err) {
     assert.isNull(err);
-    done();
   }
 
   describe('Index ', function() {
@@ -71,11 +70,8 @@ var chai = require('chai'),
         }).on('error', function(e) {
           error(e);
         });
-
       }); // listenining
-
     }); // return svg MIME type
-
 
     it('should return cache control no-cache', function(done) {
       var port = 8082;
@@ -95,10 +91,36 @@ var chai = require('chai'),
         }).on('error', function(e) {
           error(e);
         });
-
       }); // listenining
+    }); // return cache control
 
-    }); // return svg MIME type
+    it('should return new etag each time', function(done) {
+      var port = 8082;
+      var server = index.StartServer(port);
+
+      var getEtag = function(onfound) {
+        var options = {
+          host: 'localhost',
+          path: '/?server=nemo.sonarqube.org&resource=org.codehaus.sonar-plugins.php:parent&metrics=coverage',
+          port: port,
+        };
+
+        http.get(options, function(res) {
+          onfound(res.headers['etag']);
+        }).on('error', function(e) {
+          error(e);
+        });
+      };
+
+      server.on('listening', function(){
+        getEtag(function(etag1){
+          getEtag(function(etag2){
+            assert.notEqual(etag1, etag2);
+            done();
+          })
+        });
+      }); // listenining
+    }); // return cache control
 
     it('should return 106x20 image', function(done) {
       var port = 8083;
@@ -129,7 +151,5 @@ var chai = require('chai'),
         });
 
       }); // listening
-
     }); // return svg MIME type
-
   }); // describe
