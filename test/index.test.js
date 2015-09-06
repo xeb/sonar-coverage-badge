@@ -1,11 +1,10 @@
 var chai = require('chai'),
-
   assert = chai.assert,
-  should = chai.should(),
   http = require('http'),
   index = require('../src/index.js'),
   parseString = require('xml2js').parseString;
 
+chai.should();
 
 // utility function for test
 var isPortTaken = function(port, fn) {

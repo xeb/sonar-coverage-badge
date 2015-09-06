@@ -11,7 +11,7 @@ function index() {
 module.exports = new index();
 
 function getPort() {
-  port = process.argv[2];
+  var port = process.argv[2];
   if (port) {
     port = port.split('=')[1];
   }
@@ -27,9 +27,6 @@ function getPort() {
 function startServer(port) {
   var server = http.createServer(function(req, res) {
     var request = url.parse(req.url, true);
-    if (!request.query.server || !request.query.resource || !request.query.metrics) {
-      return;
-    }
 
     var coverageHandler = function(coverage) {
       var image = badger.GenerateImage(coverage, request.query.metrics);
