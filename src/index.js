@@ -12,7 +12,7 @@ module.exports = new index();
 
 function getPort() {
   var port = process.argv[2];
-  if (port) {
+  if (port !== undefined) {
     port = port.split('=')[1];
   }
   if (!port) {

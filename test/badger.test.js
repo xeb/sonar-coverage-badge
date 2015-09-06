@@ -9,6 +9,7 @@ var assertBadgeColor = function(coverage, expectedcolor) {
 };
 
 describe('Badger', function() {
+
   it('should generate a success badge', function() {
     assertBadgeColor(99, '#4c1');
   });
@@ -26,6 +27,19 @@ describe('Badger', function() {
       },
       function() { // error
         assert.fail("Error occurred");
+        done();
+      });
+  });
+
+  it('should get code coverage value for SSL', function(done) {
+
+    badger.GetCoverage('nemo.sonarqube.org', true, 'org.codehaus.sonar-plugins.php:parent', 'coverage',
+      function(d) { // success
+        d.should.equal(95.4);
+        done();
+      },
+      function(e) { // error
+        assert.fail("Error occurred " + e);
         done();
       });
   });

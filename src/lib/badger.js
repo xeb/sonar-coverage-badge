@@ -1,4 +1,5 @@
-var http = require('http');
+var http = require('http'),
+  https = require('https');
 
 function badger() {
   this.GetCoverage = getCoverage;
@@ -19,35 +20,30 @@ var colorSettings = [{
 }];
 
 function getCoverage(host, ssl, resource, metric, success, error) {
-  var coverage;
-  var options = {
-    host: host,
-    path: '/api/resources?resource=' + resource + '&metrics=' + metric,
-    port: ssl ? 443 : 80
-  };
 
-  http.get(options, function(res) {
-    var str = '';
-    res.setEncoding('utf8');
-    res.on('data', function(chunk) {
-      str += chunk;
+
+  var fulluri = 'http' + (ssl ? 's' : '') + '://' + host + '/api/resources?resource=' + resource + '&metrics=' + metric;
+  var httplib = ssl ? https : http;
+
+    httplib.get(fulluri, function(res) {
+      var str = '';
+      res.setEncoding('utf8');
+      res.on('data', function(chunk) {
+        str += chunk;
+      });
+
+      res.on('end', function() {
+        try {
+          var obj = JSON.parse(str);
+          var mval = obj[0].msr[0].val;
+          success(mval);
+        } catch (e) {
+          error(e);
+        }
+      });
+    }).on('error', function(e) {
+      error(e);
     });
-
-    res.on('end', function() {
-      try {
-        var obj = JSON.parse(str);
-        var mval = obj[0].msr[0].val;
-        success(mval);
-      } catch (e) {
-        error(e);
-      }
-    });
-
-  }).on('error', function(e) {
-    error(e);
-  });
-
-  return coverage;
 }
 
 function generateImage(coverage) {
