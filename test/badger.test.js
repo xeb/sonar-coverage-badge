@@ -47,4 +47,17 @@ describe('Badger', function() {
       });
   });
 
+  it('should not call success when metric does not exist', function(done) {
+    var metric = 'FAIL';
+
+    badger.GetCoverage('nemo.sonarqube.org', undefined, 'org.codehaus.sonar-plugins.php:parent', metric,
+      function(d) {
+        assert.fail('Success should not be called for bad values');
+        done();
+      },
+      function(e) {
+        done();
+      });
+  });
+
 });
