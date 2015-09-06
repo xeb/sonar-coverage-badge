@@ -151,5 +151,27 @@ var chai = require('chai'),
         });
 
       }); // listening
-    }); // return svg MIME type
+    }); // return image size
+
+    it('should return 500 status code when error', function(done) {
+      var port = 8083;
+      var server = index.StartServer(port);
+      server.on('listening', function(){
+        var options = {
+          host: 'localhost',
+          path: '/?server=nemo.sonarqube.org&resource=org.codehaus.sonar-plugins.php:parent&metrics=nothing',
+          port: port,
+        };
+
+        http.get(options, function(res) {
+          assert.equal(res.statusCode, 500);
+          server.close();
+          done();
+        }).on('error', function(e) {
+          error(e);
+        });
+
+      }); // listening
+    }); // return error test
+
   }); // describe
