@@ -6,7 +6,6 @@ install:
 script:
 - npm update
 - travis_retry make test
-- make coverage
 node_js:
 - 'iojs'
 - '0.12'
