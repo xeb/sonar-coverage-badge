@@ -6,6 +6,7 @@
   "author": "Mark Kockerbeck",
   "license": "BSD-2-Clause",
   "scripts": {
+    "start": "node src/index.js",
     "test": "mocha --reporter spec",
     "coverage": "istanbul cover _mocha -- -R spec"
   },
