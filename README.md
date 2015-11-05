@@ -10,7 +10,9 @@ This is a small node.js server that will generate a coverage badge (similar to: 
 
 # Usage
 
-```node sample-coverage-badge.js --port=8087```
+```node src\\index.js --port=8087```
+or
+```npm start```
 
 Then simply specify three parameters:
 <li> *server* - Hostname of the target SonarQube server</li>
