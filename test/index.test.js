@@ -6,6 +6,11 @@ var chai = require('chai'),
 
 chai.should();
 
+// these tests depend on the live http://nemo.sonarqube.org/ server
+var phpProjectKey = 'org.sonarsource.php:php';
+var server = 'nemo.sonarqube.org';
+var requestPath = '/?server='+server+'&resource='+phpProjectKey+'&metrics=coverage';
+
 // utility function for test
 var isPortTaken = function(port, fn) {
   var net = require('net');
@@ -88,7 +93,7 @@ describe('Index ', function() {
 
       var options = {
         host: 'localhost',
-        path: '/?server=nemo.sonarqube.org&resource=org.codehaus.sonar-plugins.php:parent&metrics=coverage',
+        path: requestPath,
         port: port,
       };
 
@@ -109,7 +114,7 @@ describe('Index ', function() {
 
       var options = {
         host: 'localhost',
-        path: '/?server=nemo.sonarqube.org&resource=org.codehaus.sonar-plugins.php:parent&metrics=coverage',
+        path: requestPath,
         port: port,
       };
 
@@ -130,7 +135,7 @@ describe('Index ', function() {
     var getEtag = function(onfound) {
       var options = {
         host: 'localhost',
-        path: '/?server=nemo.sonarqube.org&resource=org.codehaus.sonar-plugins.php:parent&metrics=coverage',
+        path: requestPath,
         port: port,
       };
 
@@ -157,7 +162,7 @@ describe('Index ', function() {
     server.on('listening', function() {
       var options = {
         host: 'localhost',
-        path: '/?server=nemo.sonarqube.org&resource=org.codehaus.sonar-plugins.php:parent&metrics=coverage',
+        path: requestPath,
         port: port,
       };
       http.get(options, function(res) {
@@ -191,7 +196,7 @@ describe('Index ', function() {
     server.on('listening', function() {
       var options = {
         host: 'localhost',
-        path: '/?server=nemo.sonarqube.org&resource=org.codehaus.sonar-plugins.php:parent&metrics=nothing',
+        path: requestPath + 'nothing',
         port: port,
       };
 

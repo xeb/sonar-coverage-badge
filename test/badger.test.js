@@ -2,6 +2,9 @@ var chai = require('chai'),
   assert = chai.assert,
   badger = require('../src/lib/badger.js');
 
+// these tests depend on the live http://nemo.sonarqube.org/ server
+var phpProjectKey = 'org.sonarsource.php:php';
+
 var assertBadgeColor = function(coverage, expectedcolor) {
   var img = badger.GenerateImage(coverage);
   var ex = '<?xml version="1.0" encoding="UTF-8"?>  <svg xmlns="http://www.w3.org/2000/svg" width="106" height="20">     <linearGradient id="b" x2="0" y2="100%">        <stop offset="0" stop-color="#bbb" stop-opacity=".1" />        <stop offset="1" stop-opacity=".1" />     </linearGradient>     <mask id="a">        <rect width="106" height="20" rx="3" fill="#fff" />     </mask>     <g mask="url(#a)">        <path fill="#555" d="M0 0h63v20H0z" />        <path fill="' + expectedcolor + '" d="M63 0h43v20H63z" />        <path fill="url(#b)" d="M0 0h106v20H0z" />     </g>     <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">        <text x="31.5" y="15" fill="#010101" fill-opacity=".3">coverage</text>        <text x="31.5" y="14">coverage</text>        <text x="83.5" y="15" fill="#010101" fill-opacity=".3">' + coverage + '%</text>        <text x="83.5" y="14">' + coverage + '%</text>     </g>  </svg>';
@@ -20,22 +23,22 @@ describe('Badger', function() {
 
   it('should get code coverage value', function(done) {
 
-    badger.GetCoverage('nemo.sonarqube.org', undefined, 'org.codehaus.sonar-plugins.php:parent', 'coverage',
+    badger.GetCoverage('nemo.sonarqube.org', undefined, phpProjectKey, 'coverage',
       function(d) { // success
-        d.should.equal(95.4);
+        d.should.above(90);
         done();
       },
-      function() { // error
-        assert.fail("Error occurred");
+      function(e) { // error
+        assert.fail("Error occurred" + e);
         done();
       });
   });
 
   it('should get code coverage value for SSL', function(done) {
 
-    badger.GetCoverage('nemo.sonarqube.org', true, 'org.codehaus.sonar-plugins.php:parent', 'coverage',
+    badger.GetCoverage('nemo.sonarqube.org', true, phpProjectKey, 'coverage',
       function(d) { // success
-        d.should.equal(95.4);
+        d.should.above(90);
         done();
       },
       function(e) { // error
@@ -64,7 +67,7 @@ describe('Badger', function() {
   it('should not call success when metric does not exist', function(done) {
     var metric = 'FAIL';
 
-    badger.GetCoverage('nemo.sonarqube.org', undefined, 'org.codehaus.sonar-plugins.php:parent', metric,
+    badger.GetCoverage('nemo.sonarqube.org', undefined, phpProjectKey, metric,
       function() {
         assert.fail('Success should not be called for bad values');
         done();
