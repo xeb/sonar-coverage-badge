@@ -24,7 +24,7 @@ Example:
 
 Will display:
 
-<img src="http://sonarcovbadge.epicapp.com/?server=nemo.sonarqube.org&resource=org.codehaus.sonar-plugins.php:parent&metrics=coverage" />
+<img src="http://sonarcovbadge.epicapp.com/?server=nemo.sonarqube.org&resource=org.sonarsource.php:php&metrics=coverage" />
 
 
 # Color Settings
