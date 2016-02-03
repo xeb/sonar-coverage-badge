@@ -48,7 +48,7 @@ describe('Badger', function() {
   });
 
   it('should return parsed error', function(done) {
-    badger.GetCoverage('fdasfdsfasdfdsfasdfsd', undefined, 'fdsfdasafd', 'afdasfsd', undefined,
+    badger.GetCoverage('test', true, 'fdsfdasafd', 'afdasfsd', undefined,
       function(e) { // error
         assert.include(e.toString(), 'ENOTFOUND');
         done();
