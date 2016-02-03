@@ -20,12 +20,16 @@ Then simply specify three parameters:
 <li> *metrics* - usually either 'coverage' or 'branch_coverage' </li>
 
 Example:
-*http://localhost:8087/?server=nemo.sonarqube.org&resource=junit:junit&metrics=coverage*
+*http://localhost:8087/?server=nemo.sonarqube.org&resource=junit:junit&metrics=coverage&ssl=true*
 
 Will display:
 
-<img src="http://sonarcovbadge.epicapp.com/?server=nemo.sonarqube.org&resource=org.sonarsource.php:php&metrics=coverage" />
+<img src="http://sonarcovbadge.epicapp.com/?server=nemo.sonarqube.org&resource=org.sonarsource.php:php&metrics=coverage&ssl=true" />
 
+# Note about SSL
+There is a quick way to turn on SSL queries if your SonarQube server requires SSL.  
+Just add ```ssl=true``` to the end of the query string.  
+All of the examples in this README referencing Nemo.sonarqube.org have SSL enabled.
 
 # Color Settings
 To adjust the badge colors, simply update the ```colorSettings``` var at the beginning of the script.  Note that it will be evaluated in order.
@@ -36,23 +40,23 @@ To adjust the badge colors, simply update the ```colorSettings``` var at the beg
 ## JUnit
 
 <a href="http://nemo.sonarqube.org/drilldown/measures/252031?metric=coverage">
-	<img src="http://sonarcovbadge.epicapp.com/?server=nemo.sonarqube.org&resource=junit:junit&metrics=coverage" />
+	<img src="http://sonarcovbadge.epicapp.com/?server=nemo.sonarqube.org&resource=junit:junit&metrics=coverage&ssl=true" />
 </a>
 
 ```
 <a href="http://nemo.sonarqube.org/drilldown/measures/252031?metric=coverage">
-	<img src="http://localhost:8087/?server=nemo.sonarqube.org&resource=junit:junit&metrics=coverage" />
+	<img src="http://localhost:8087/?server=nemo.sonarqube.org&resource=junit:junit&metrics=coverage&ssl=true" />
 </a>
 ```
 
 ## Python
 
 <a href="http://nemo.sonarqube.org/drilldown/measures/690819?metric=coverage">
-	<img src="http://sonarcovbadge.epicapp.com/?server=nemo.sonarqube.org&resource=org.codehaus.sonar-plugins.python:python&metrics=coverage" />
+	<img src="http://sonarcovbadge.epicapp.com/?server=nemo.sonarqube.org&resource=org.codehaus.sonar-plugins.python:python&metrics=coverage&ssl=true" />
 </a>
 
 ```
 <a href="http://nemo.sonarqube.org/drilldown/measures/252031?metric=coverage">
-	<img src="http://localhost:8087/?server=nemo.sonarqube.org&resource=org.codehaus.sonar-plugins.python:python&metrics=coverage" />
+	<img src="http://localhost:8087/?server=nemo.sonarqube.org&resource=org.codehaus.sonar-plugins.python:python&metrics=coverage&ssl=true" />
 </a>
 ```

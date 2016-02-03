@@ -18,7 +18,7 @@ test:
 realtest:
 	node src/index.js &
 	sleep 2
-	curl -vvv "http://127.0.0.1:8087/?server=nemo.sonarqube.org&resource=org.codehaus.sonar-plugins.php:parent&metrics=coverage"
+	curl -vvv "http://127.0.0.1:8087/?server=nemo.sonarqube.org&resource=junit:junit&metrics=coverage&ssl=true"
 	echo $?
 	pkill node
 
