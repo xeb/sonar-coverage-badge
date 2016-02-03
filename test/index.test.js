@@ -9,7 +9,7 @@ chai.should();
 // these tests depend on the live http://nemo.sonarqube.org/ server
 var phpProjectKey = 'org.sonarsource.php:php';
 var server = 'nemo.sonarqube.org';
-var requestPath = '/?server='+server+'&resource='+phpProjectKey+'&metrics=coverage';
+var requestPath = '/?server='+server+'&resource='+phpProjectKey+'&metrics=coverage&ssl=true';
 
 // utility function for test
 var isPortTaken = function(port, fn) {
@@ -196,7 +196,7 @@ describe('Index ', function() {
     server.on('listening', function() {
       var options = {
         host: 'localhost',
-        path: requestPath + 'nothing',
+        path: requestPath.replace('&metrics=coverage','&metrics=nothing'),
         port: port,
       };
 

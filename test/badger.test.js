@@ -23,7 +23,7 @@ describe('Badger', function() {
 
   it('should get code coverage value', function(done) {
 
-    badger.GetCoverage('nemo.sonarqube.org', undefined, phpProjectKey, 'coverage',
+    badger.GetCoverage('nemo.sonarqube.org', true, phpProjectKey, 'coverage',
       function(d) { // success
         d.should.above(90);
         done();
