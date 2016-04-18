@@ -45,11 +45,11 @@ function startServer(port) {
       res.end(e.toString());
     };
 
-    badger.GetCoverage(request.query.server,
+    badger.GetCoverage(request.query.server || process.env.SONAR_HOST,
       request.query.ssl,
       request.query.resource,
       request.query.metrics,
-      request.query.token,
+      request.query.token || process.env.SONAR_TOKEN,
       coverageHandler,
       onError);
 
