@@ -20,10 +20,14 @@ var colorSettings = [{
 }];
 
 function getCoverage(host, ssl, resource, metric, success, error) {
-  var fulluri = 'http' + (ssl ? 's' : '') + '://' + host + '/api/resources?resource=' + resource + '&metrics=' + metric;
   var httplib = ssl ? https : http;
 
-  httplib.get(fulluri, function(res) {
+  var options = {
+    hostname: host,
+    path: '/api/resources?resource=' + resource + '&metrics=' + metric
+  };
+
+  httplib.get(options, function(res) {
     var str = '';
     res.setEncoding('utf8');
     res.on('data', function(chunk) {
