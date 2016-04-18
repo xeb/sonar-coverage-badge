@@ -25,8 +25,8 @@ function startServer(port) {
   var server = http.createServer(function(req, res) {
     var request = url.parse(req.url, true);
 
-    var coverageHandler = function(coverage) {
-      var image = badger.GenerateImage(coverage, request.query.metrics);
+    var coverageHandler = function(coverage, formatedValue) {
+      var image = badger.GenerateImage(coverage, formatedValue, request.query.metrics);
       var headers = {
         'Content-Type': 'image/svg+xml;charset=utf-8',
         'Cache-Control': 'no-cache',
