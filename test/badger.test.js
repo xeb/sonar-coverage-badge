@@ -34,6 +34,19 @@ describe('Badger', function() {
       });
   });
 
+  it('should get code coverage value using an access token', function(done) {
+
+    badger.GetCoverage('nemo.sonarqube.org', true, phpProjectKey, 'coverage', 'fake-token',
+      function(d) { // success
+        d.should.above(90);
+        done();
+      },
+      function(e) { // error
+        assert.fail("Error occurred" + e);
+        done();
+      });
+  });
+
   it('should get code coverage value for SSL', function(done) {
 
     badger.GetCoverage('nemo.sonarqube.org', true, phpProjectKey, 'coverage', false,
