@@ -19,13 +19,17 @@ var colorSettings = [{
   color: '#4c1'
 }];
 
-function getCoverage(host, ssl, resource, metric, success, error) {
+function getCoverage(host, ssl, resource, metric, token, success, error) {
   var httplib = ssl ? https : http;
 
   var options = {
     hostname: host,
     path: '/api/resources?resource=' + resource + '&metrics=' + metric
   };
+
+  if (token) {
+    options.auth = token + ':';
+  }
 
   httplib.get(options, function(res) {
     var str = '';
