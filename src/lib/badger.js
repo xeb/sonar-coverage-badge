@@ -57,13 +57,18 @@ function generateImage(coverage, formatedValue, metrics) {
   var defaultColor = '#ddd';
   formatedValue = formatedValue || coverage;
 
+  if (typeof formatedValue === 'string' && formatedValue.match(/[a-z]/i)) {
+    coverage = coverage * 100;
+  }
+
+  color = defaultColor;
   colorSettings.forEach(function(setting) {
     if (coverage >= setting.min) {
       color = setting.color;
-    } else {
-      color = defaultColor;
     }
   });
+
+  metrics = metrics.split('_')[0];
 
   /*jshint multistr: true */
   return '<?xml version="1.0" encoding="UTF-8"?>' +
