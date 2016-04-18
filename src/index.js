@@ -3,6 +3,8 @@ var http = require('http'),
   uuid = require('uuid'),
   badger = require('./lib/badger.js');
 
+require('dotenv').config({silent: true});
+
 function index() {
   this.GetPort = getPort;
   this.StartServer = startServer;
