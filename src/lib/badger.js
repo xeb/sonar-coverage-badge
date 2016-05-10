@@ -45,14 +45,12 @@ function getCoverage(host, ssl, resource, metric, success, error) {
 }
 
 function generateImage(coverage) {
-  var color = '';
-  var defaultColor = '#ddd';
+  var color = "#ddd";
   colorSettings.forEach(function(setting) {
     if (coverage >= setting.min) {
       color = setting.color;
-    } else {
-      color = defaultColor;
     }
+
   });
 
   /*jshint multistr: true */
