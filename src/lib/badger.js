@@ -19,11 +19,19 @@ var colorSettings = [{
   color: '#4c1'
 }];
 
-function getCoverage(host, ssl, resource, metric, success, error) {
-  var fulluri = 'http' + (ssl ? 's' : '') + '://' + host + '/api/resources?resource=' + resource + '&metrics=' + metric;
+function getCoverage(host, ssl, resource, metric, token, success, error) {
   var httplib = ssl ? https : http;
 
-  httplib.get(fulluri, function(res) {
+  var options = {
+    hostname: host,
+    path: '/api/resources?resource=' + resource + '&metrics=' + metric
+  };
+
+  if (token) {
+    options.auth = token + ':';
+  }
+
+  httplib.get(options, function(res) {
     var str = '';
     res.setEncoding('utf8');
     res.on('data', function(chunk) {

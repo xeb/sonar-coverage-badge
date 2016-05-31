@@ -23,7 +23,20 @@ describe('Badger', function() {
 
   it('should get code coverage value', function(done) {
 
-    badger.GetCoverage('nemo.sonarqube.org', true, phpProjectKey, 'coverage',
+    badger.GetCoverage('nemo.sonarqube.org', true, phpProjectKey, 'coverage', false,
+      function(d) { // success
+        d.should.above(90);
+        done();
+      },
+      function(e) { // error
+        assert.fail("Error occurred" + e);
+        done();
+      });
+  });
+
+  it('should get code coverage value using an access token', function(done) {
+
+    badger.GetCoverage('nemo.sonarqube.org', true, phpProjectKey, 'coverage', 'fake-token',
       function(d) { // success
         d.should.above(90);
         done();
@@ -36,7 +49,7 @@ describe('Badger', function() {
 
   it('should get code coverage value for SSL', function(done) {
 
-    badger.GetCoverage('nemo.sonarqube.org', true, phpProjectKey, 'coverage',
+    badger.GetCoverage('nemo.sonarqube.org', true, phpProjectKey, 'coverage', false,
       function(d) { // success
         d.should.above(90);
         done();
@@ -48,7 +61,7 @@ describe('Badger', function() {
   });
 
   it('should return parsed error', function(done) {
-    badger.GetCoverage('test', true, 'fdsfdasafd', 'afdasfsd', undefined,
+    badger.GetCoverage('test', true, 'fdsfdasafd', 'afdasfsd', undefined, false,
       function(e) { // error
         assert.include(e.toString(), 'ENOTFOUND');
         done();
@@ -57,7 +70,7 @@ describe('Badger', function() {
 
   it('should handle an error', function(done) {
 
-    badger.GetCoverage('127.0.0.1', undefined, 'none', 'none', undefined,
+    badger.GetCoverage('127.0.0.1', undefined, 'none', 'none', undefined, false,
       function(e) { // error
         assert.include(e.toString(), 'ECONNREFUSED');
         done();
@@ -67,7 +80,7 @@ describe('Badger', function() {
   it('should not call success when metric does not exist', function(done) {
     var metric = 'FAIL';
 
-    badger.GetCoverage('nemo.sonarqube.org', undefined, phpProjectKey, metric,
+    badger.GetCoverage('nemo.sonarqube.org', undefined, phpProjectKey, metric, false,
       function() {
         assert.fail('Success should not be called for bad values');
         done();

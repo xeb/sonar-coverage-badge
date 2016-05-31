@@ -47,6 +47,7 @@ function startServer(port) {
       request.query.ssl === 'true',
       request.query.resource,
       request.query.metrics,
+      request.query.token,
       coverageHandler,
       onError);
 
