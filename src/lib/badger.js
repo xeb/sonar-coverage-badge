@@ -29,9 +29,9 @@ function getCoverage(host, ssl, resource, metric, token, success, error) {
     path: '/api/resources?resource=' + resource + '&metrics=' + metric
   };
 
-  if (token) {
-    options.auth = token + ':';
-  }
+  // if (token) {
+  //   options.auth = token + ':';
+  // }
 
   httplib.get(options, function(res) {
     var str = '';
@@ -62,7 +62,6 @@ function generateImage(coverage, formatedValue, metrics) {
     coverage = coverage * 100;
   }
 
-  color = defaultColor;
   colorSettings.forEach(function(setting) {
     if (coverage >= setting.min) {
       color = setting.color;

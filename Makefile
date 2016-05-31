@@ -18,8 +18,10 @@ test:
 realtest:
 	node src/index.js &
 	sleep 2
-	curl -vvv "http://127.0.0.1:8087/?server=nemo.sonarqube.org&resource=junit:junit&metrics=coverage&ssl=true"
-	echo $?
+	curl "http://127.0.0.1:8087/?server=nemo.sonarqube.org&resource=junit:junit&metrics=coverage&ssl=true" > temp.svg
+	open temp.svg
+	sleep 5
+	rm -f temp.svg
 	pkill node
 
 coverage:

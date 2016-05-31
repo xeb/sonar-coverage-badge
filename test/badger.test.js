@@ -35,13 +35,14 @@ describe('Badger', function() {
   });
 
   it('should get code coverage value using an access token', function(done) {
-
-    badger.GetCoverage('nemo.sonarqube.org', true, phpProjectKey, 'coverage', 'fake-token',
+    // note: I'm using my own server here to validate this functionality - I don't care if the access token is public
+    badger.GetCoverage('sonar.epicapp.com', false, 'sonar-coverage-badge', 'coverage', '544902ae1404e2972763f32d860eb8dce4f23513',
       function(d) { // success
         d.should.above(90);
         done();
       },
       function(e) { // error
+        console.log(e)
         assert.fail("Error occurred" + e);
         done();
       });

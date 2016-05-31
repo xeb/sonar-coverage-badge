@@ -57,6 +57,6 @@ To adjust the badge colors, simply update the ```colorSettings``` var at the beg
 
 ```
 <a href="http://nemo.sonarqube.org/drilldown/measures/252031?metric=coverage">
-	<img src="http://localhost:8087/?server=nemo.sonarqube.org&resource=org.codehaus.sonar-plugins.python:python&metrics=coverage&ssl=true" />
+	<img src="http://sonarcovbadge.epicapp.com/?server=nemo.sonarqube.org&resource=org.codehaus.sonar-plugins.python:python&metrics=coverage&ssl=true" />
 </a>
 ```
