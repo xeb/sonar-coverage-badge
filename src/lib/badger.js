@@ -21,9 +21,11 @@ var colorSettings = [{
 
 function getCoverage(host, ssl, resource, metric, token, success, error) {
   var httplib = ssl ? https : http;
+  var port = host.split(':')[1];
 
   var options = {
-    hostname: host,
+    hostname: host.split(':')[0],
+    port: port || (ssl ? 443 : 80),
     path: '/api/resources?resource=' + resource + '&metrics=' + metric
   };
 

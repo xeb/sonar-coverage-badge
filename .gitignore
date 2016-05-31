@@ -31,3 +31,7 @@ node_modules
 reports
 .sonar
 src-orig
+
+
+# Dotenv files
+.env
