@@ -3,6 +3,8 @@ var http = require('http'),
   uuid = require('uuid'),
   badger = require('./lib/badger.js');
 
+require('dotenv').config({silent: true});
+
 function index() {
   this.GetPort = getPort;
   this.StartServer = startServer;
@@ -43,11 +45,11 @@ function startServer(port) {
       res.end(e.toString());
     };
 
-    badger.GetCoverage(request.query.server,
-      request.query.ssl === 'true',
+    badger.GetCoverage(request.query.server || process.env.SONAR_HOST,
+      request.query.ssl == 'true',
       request.query.resource,
       request.query.metrics,
-      request.query.token,
+      request.query.token || process.env.SONAR_TOKEN,
       coverageHandler,
       onError);
 
