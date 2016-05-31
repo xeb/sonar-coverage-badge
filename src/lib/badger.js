@@ -41,8 +41,8 @@ function getCoverage(host, ssl, resource, metric, token, success, error) {
     res.on('end', function() {
       try {
         var obj = JSON.parse(str);
-        var mval = obj[0].msr[0].val;
-        success(mval);
+        var mval = obj[0].msr[0];
+        success(mval.val, mval.frmt_val);
       } catch (e) {
         error(e);
       }
@@ -52,14 +52,23 @@ function getCoverage(host, ssl, resource, metric, token, success, error) {
   });
 }
 
-function generateImage(coverage) {
+function generateImage(coverage, formatedValue, metrics) {
   var color = "#ddd";
+  formatedValue = formatedValue || coverage;
+
+  if (typeof formatedValue === 'string' && formatedValue.match(/[a-z]/i)) {
+    coverage = coverage * 100;
+  }
+
+  color = defaultColor;
   colorSettings.forEach(function(setting) {
     if (coverage >= setting.min) {
       color = setting.color;
     }
 
   });
+
+  metrics = metrics.split('_')[0];
 
   /*jshint multistr: true */
   return '<?xml version="1.0" encoding="UTF-8"?>' +
@@ -77,10 +86,10 @@ function generateImage(coverage) {
     '        <path fill="url(#b)" d="M0 0h106v20H0z" />' +
     '     </g>' +
     '     <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">' +
-    '        <text x="31.5" y="15" fill="#010101" fill-opacity=".3">coverage</text>' +
-    '        <text x="31.5" y="14">coverage</text>' +
-    '        <text x="83.5" y="15" fill="#010101" fill-opacity=".3">' + coverage + '%</text>' +
-    '        <text x="83.5" y="14">' + coverage + '%</text>' +
+    '        <text x="31.5" y="15" fill="#010101" fill-opacity=".3">' + metrics + '</text>' +
+    '        <text x="31.5" y="14">' + metrics + '</text>' +
+    '        <text x="83.5" y="15" fill="#010101" fill-opacity=".3">' + formatedValue + '</text>' +
+    '        <text x="83.5" y="14">' + formatedValue + '</text>' +
     '     </g>' +
     '  </svg>';
 }
