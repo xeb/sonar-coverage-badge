@@ -44,7 +44,7 @@ function startServer(port) {
     };
 
     badger.GetCoverage(request.query.server,
-      request.query.ssl,
+      request.query.ssl === 'true',
       request.query.resource,
       request.query.metrics,
       coverageHandler,
